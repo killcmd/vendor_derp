@@ -11,7 +11,7 @@ if [[ -f $file_path ]]; then
     file_name=$(basename "$file_path")
     device_name=$(echo "$file_name" | cut -d'-' -f5)
     buildprop=${OUT_DIR:-out}/target/product/$device_name/system/build.prop
-    if [[ $file_name == *"Official"* ]]; then # only generate for official builds
+    if [[ $file_name == *"Community"* ]]; then # only generate for official builds
         file_size=$(stat -c %s "$file_path")
         sha256=$(cut -d' ' -f1 "$file_path".sha256sum)
         datetime=$(grep -w ro\\.build\\.date\\.utc "$buildprop" | cut -d= -f2)
