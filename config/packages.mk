@@ -2,6 +2,7 @@
 PRODUCT_PACKAGES += \
     DerpSetupWizard \
     Flipendo \
+    Prospect \
     GameSpace \
     NetworkStackOverlay \
     ParallelSpace \
