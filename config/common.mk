@@ -68,6 +68,11 @@ PRODUCT_COPY_FILES += \
 PRODUCT_SYSTEM_PROPERTIES += \
     ro.control_privapp_permissions=enforce
 
+# Support many users/work profiles
+PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
+    persist.sys.max_profiles=16 \
+    fw.max_users=32
+
 # Include AOSP audio files
 include vendor/derp/config/aosp_audio.mk
 
@@ -141,6 +146,15 @@ PRODUCT_PACKAGES_DEBUG += \
 ifneq ($(TARGET_BUILD_VARIANT),user)
 PRODUCT_ARTIFACT_PATH_REQUIREMENT_ALLOWED_LIST += \
     system/bin/procmem
+endif
+
+# Blur
+PRODUCT_PRODUCT_PROPERTIES += \
+    ro.sf.blurs_are_expensive=1 \
+    ro.surface_flinger.supports_background_blur=1
+ifeq ($(TARGET_NOT_USES_BLUR),true)
+PRODUCT_PRODUCT_PROPERTIES += \
+    persist.sysui.disableBlur=1
 endif
 
 # Root

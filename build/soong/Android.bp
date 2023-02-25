@@ -140,6 +140,33 @@ surfaceflinger_udfps_lib {
     },
 }
 
+soong_config_module_type {
+    name: "trust_usb_control",
+    module_type: "cc_defaults",
+    config_namespace: "derpGlobalVars",
+    value_variables: [
+        "target_trust_usb_control_path",
+        "target_trust_usb_control_enable",
+        "target_trust_usb_control_disable",
+    ],
+    properties: ["cppflags"],
+}
+
+trust_usb_control {
+    name: "trust_usb_control_defaults",
+    soong_config_variables: {
+        target_trust_usb_control_path: {
+            cppflags: ["-DUSB_CONTROL_PATH=\"%s\""],
+        },
+        target_trust_usb_control_enable: {
+            cppflags: ["-DUSB_CONTROL_ENABLE=\"%s\""],
+        },
+        target_trust_usb_control_disable: {
+            cppflags: ["-DUSB_CONTROL_DISABLE=\"%s\""],
+        },
+    },
+}
+
 // NVIDIA specific config modules
 soong_config_module_type {
     name: "nvidia_enhancements",
@@ -244,6 +271,39 @@ surfaceflinger_qcom_extensions {
         qcom_display_headers_namespace: {
             cppflags: ["-DQCOM_UM_FAMILY"],
             header_libs: ["//%s:display_intf_headers"],
+        },
+    },
+}
+
+soong_config_module_type {
+    name: "uses_oplus_camera",
+    module_type: "cc_defaults",
+    config_namespace: "derpGlobalVars",
+    bool_variables: ["uses_oplus_camera"],
+    properties: ["cppflags"],
+}
+uses_oplus_camera {
+    name: "uses_oplus_camera_defaults",
+    soong_config_variables: {
+        uses_oplus_camera: {
+            cppflags: ["-DUSES_OPLUS_CAMERA"],
+        },
+    },
+}
+
+soong_config_module_type {
+    name: "uses_nothing_camera",
+    module_type: "cc_defaults",
+    config_namespace: "derpGlobalVars",
+    bool_variables: ["uses_nothing_camera"],
+    properties: ["cppflags"],
+}
+
+uses_nothing_camera {
+    name: "uses_nothing_camera_defaults",
+    soong_config_variables: {
+        uses_nothing_camera: {
+            cppflags: ["-DUSES_NOTHING_CAMERA"],
         },
     },
 }

@@ -1,13 +1,13 @@
 # DerpFest packages
 PRODUCT_PACKAGES += \
     DerpSetupWizard \
-    Flipendo \
     Prospect \
     GameSpace \
     NetworkStackOverlay \
     ParallelSpace \
     RepainterServicePriv \
     Ripple\
+    TouchGestures \
     Updater
 
 # Themes
